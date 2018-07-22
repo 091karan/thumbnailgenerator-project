@@ -15,7 +15,7 @@ def home(request):
         thumb.type = request.POST['filetype']
         thumb.save()
         if request.POST['filetype']=="video":
-            vidcap = cv2.VideoCapture(PATH + '/12.mp4')
+            vidcap = cv2.VideoCapture(PATH + '/' + request.FILES['file'].name)
             vidcap.set(cv2.CAP_PROP_POS_MSEC,2000)
             success,image = vidcap.read()
             count = 0
@@ -41,10 +41,6 @@ def home(request):
         img = Image.fromarray(resized_image)
         img.show()
         return redirect('created')
-
-        t = Thumb.objects.all()
-        for t_obj in t:
-            t_obj.delete()
 
 
     else:

@@ -11,7 +11,3 @@ class Thumb(models.Model):
 
     def __str__(self):
         return '{}'.format(self.type)
-
-    def delete(self, *args, **kwargs):
-        os.remove(PATH + "/" + self.media.name)
-        super(Thumb,self).delete(*args,**kwargs)
